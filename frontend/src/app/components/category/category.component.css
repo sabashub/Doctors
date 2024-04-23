@@ -1,0 +1,27 @@
+.category_container {
+  width: 300px;
+  height: 600px;
+  background-color: #f5f4f4;
+  margin-top: 50px;
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.category_item {
+  width: 80%;
+  margin-left: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #053354;
+  font-size: 14px;
+  align-items: center;
+  height: 40px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+.category_item:focus {
+  background-color: #c8d2dc80;
+  outline: none;
+}

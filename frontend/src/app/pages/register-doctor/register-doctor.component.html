@@ -1,0 +1,40 @@
+<div class="container">
+  <h2>ექიმის რეგისტრაცია</h2>
+  <form (ngSubmit)="onSubmit()" class="registration-form">
+    <div class="form-group">
+      <label>სახელი</label>
+      <input type="text" class="form-control" [(ngModel)]="model.firstName" name="firstName" required>
+    </div>
+    <div class="form-group">
+      <label>გვარი</label>
+      <input type="text" class="form-control" [(ngModel)]="model.lastName" name="lastName" required>
+    </div>
+    <div class="form-group">
+      <label>იმეილი</label>
+      <input type="email" class="form-control" [(ngModel)]="model.email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label>პაროლი</label>
+      <input type="password" class="form-control" [(ngModel)]="model.password" name="password" required>
+    </div>
+    <div class="form-group">
+      <label>პირადი ნომერი</label>
+      <input type="text" class="form-control" [(ngModel)]="model.privateNumber" name="privateNumber" required>
+    </div>
+    <div class="form-group">
+      <label>კატეგორია</label>
+      <select class="form-control" [(ngModel)]="model.category" name="category" required>
+        <option *ngFor="let category of categories" [ngValue]="category.name">{{ category.name }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>ფოტო სურათი</label>
+      <input type="file" (change)="onImageChange($event)" name="image" required class="input_file">
+    </div>
+    <div class="form-group">
+      <label>CV</label>
+      <input type="file" (change)="onCVChange($event)" name="cv" required class="input_file">
+    </div>
+    <button type="submit" class="add_button" >რეგისტრაცია</button> 
+  </form>
+</div>

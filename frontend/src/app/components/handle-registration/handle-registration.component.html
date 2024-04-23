@@ -1,0 +1,17 @@
+<div class="handle_registration_component">
+    <div class="action_buttons_container">
+        <button class="action_button" (click)="showRegistration(1, 1)" [class.active_button]="activeButton === 1">მომხმარებელი</button>
+        <button class="action_button" (click)="showRegistration(2, 2)" [class.active_button]="activeButton === 2">ექიმი</button>
+        <button class="action_button" (click)="showRegistration(3, 3)" [class.active_button]="activeButton === 3">ადმინი</button>
+      </div>
+      <div *ngIf="showUserRegistration">
+            <app-registration></app-registration>
+      </div>
+      <div *ngIf="showDoctorRegistration">
+        <app-register-doctor></app-register-doctor>
+      </div>
+      <div *ngIf="showAdminRegistration">
+       <app-register-admin></app-register-admin>
+      </div>
+</div>
+

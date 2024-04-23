@@ -1,0 +1,82 @@
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+a {
+  text-decoration: none;
+}
+
+.navbar {
+  display: flex;
+  /* margin-top: 20px; */
+  flex-direction: row;
+  padding: 0 50px;
+}
+
+.clinic {
+  font-family: FiraGO;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0.07em;
+  text-align: left;
+  color: red;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* padding-right: 10px; */
+  width: 250px;
+  background-color: #f0faff;
+  border-radius: 25px;
+}
+.no_style {
+  border: none; /* Remove border */
+  padding: 0; /* Remove padding */
+  background: none; /* Remove background */
+  color: inherit; /* Inherit color from parent */
+  font: inherit; /* Inherit font from parent */
+  cursor: pointer; /* Add cursor pointer */
+  /* Add any other styles you want to reset */
+}
+.dropdown {
+  margin-left: 10px;
+  border-radius: 25px;
+  border: none;
+  background-color: #f0faff;
+}
+
+.user_profile {
+  background-color: #f0faff;
+  width: 400px;
+  height: 40px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.user_name {
+  color: #18a4e1;
+  font-weight: 400;
+  font-size: 20px;
+  font-family: FiraGO;
+}
+
+.logout_button {
+  color: red;
+  font-weight: 1000;
+  cursor: pointer;
+}
+
+.user_logo_profile {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}

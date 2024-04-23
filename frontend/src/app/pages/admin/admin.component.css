@@ -1,0 +1,55 @@
+.admin_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttons_container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+}
+
+.action_buttons_container {
+  width: 450px;
+  display: flex;
+  height: 45px;
+  border: 1px solid #f2f2f2;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.action_button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+}
+.active_button {
+  color: #18a4e1;
+}
+
+.user_buttons {
+  width: 800px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 50px;
+}
+
+.user_button {
+  width: 250px;
+  height: 45px;
+  border: 1px solid #18a4e1;
+  border-radius: 40px;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  color: #18a4e1;
+}

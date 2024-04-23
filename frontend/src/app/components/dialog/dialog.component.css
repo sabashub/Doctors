@@ -1,0 +1,48 @@
+h4 {
+  color: green;
+  margin: 0;
+  margin-left: 30px;
+}
+textarea {
+  height: 60px;
+  width: 80%;
+  margin-left: 30px;
+}
+p {
+  margin-left: 30px;
+}
+.dialog {
+  display: flex;
+  height: 50px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.book_visit {
+  width: 140px;
+  height: 40px;
+  background-color: #3acf99;
+  border-radius: 40px;
+  color: white;
+  font-weight: 500;
+  border: none;
+  margin-right: 30px;
+}
+.cancel_visit {
+  width: 140px;
+  height: 40px;
+  background-color: #f48888;
+  border-radius: 40px;
+  color: white;
+  font-weight: 500;
+  border: none;
+  margin-left: 30px;
+}

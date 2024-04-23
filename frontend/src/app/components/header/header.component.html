@@ -1,0 +1,40 @@
+<div class = "header">
+  <div style="display: flex; flex-direction: row; align-items: center;">
+    <img src="../../../assets/logo1.png" />
+    <span class="clinic">კლინიკა</span>
+  </div>
+  <div class="navbar">
+    <nav mat-tab-nav-bar  >
+      @for (link of links; track link) {
+        <a mat-tab-link
+          (click)="activeLink = link"
+          routerLink="{{link.url}}"
+          [active]="activeLink == link"> {{link.label}} </a>
+      }
+  
+    </nav>
+    
+    <div class="buttons" *ngIf="(appService.user$ | async) === null">
+      <button class="no_style" style="color: #18A4E1" (click)="openLoginDialog()">შესვლა</button>
+       / 
+      <button class="no_style" style="color: #053354"><a routerLink = "registration"> რეგისტრაცია</a></button>
+  </div>
+  <div *ngIf="(appService.user$ | async) as user" class="user_profile" > 
+    <img [src]="logoUrl" class="user_logo_profile" />
+    <a class="user_name" [routerLink]="routerLink">
+    {{name}}</a>
+    <a (click) = 'logout()' class="logout_button">გამოსვლა</a>
+  </div>
+  
+  <select class="dropdown">
+    <option>
+      ENG
+    </option>
+    <option>
+      GEO
+    </option>
+  </select>
+ 
+  
+
+</div>

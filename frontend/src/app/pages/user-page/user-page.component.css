@@ -1,0 +1,23 @@
+.user_page_container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.user_description {
+  width: 350px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ecf2f8;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.user_image {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin-top: 20px;
+}

@@ -1,0 +1,79 @@
+/* doctors-grid.component.css */
+.categories-management {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.category-grid {
+  max-height: 500px; /* Set the maximum height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  width: 800px;
+  border: 1px solid #ddd;
+  margin-top: 50px;
+}
+
+.header {
+  padding: 10px;
+}
+
+.header-row {
+  background-color: #f0faff;
+  font-weight: bold;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  min-height: 50px; /* Set a minimum height for each row */
+}
+
+.column {
+  flex: 1;
+}
+
+img {
+  max-width: 40px;
+  max-height: 40px;
+  border-radius: 50%;
+}
+
+button {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+
+.edit_button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #dafaee;
+  border: none;
+}
+
+.delete_button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ff93a6;
+  border: none;
+}
+.input_category {
+  height: 40px;
+  width: 400px;
+  border-radius: 50px;
+  border: 1px solid #ecf2f8;
+}
+
+.add_button {
+  width: 150px;
+  height: 40px;
+  background-color: #053354;
+  border-radius: 50px;
+  color: white;
+  border: none;
+  margin-left: 50px;
+}

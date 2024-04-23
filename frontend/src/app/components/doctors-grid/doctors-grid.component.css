@@ -1,0 +1,91 @@
+/* doctors-grid.component.css */
+.doctors-grid {
+  width: 1200px;
+  height: 600px;
+}
+
+.header {
+  padding: 10px;
+}
+
+.header-row {
+  background-color: #f0faff;
+  font-weight: bold;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+.column {
+  flex: 1;
+}
+
+.doctor_thumbnail {
+  max-width: 40px;
+  max-height: 40px;
+  border-radius: 50%;
+}
+
+button {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+p {
+  margin: 0;
+}
+h4 {
+  margin: 0;
+}
+
+.doctor_details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 300px;
+  width: 600px;
+  border: 1px solid #ddd;
+  margin: 20px;
+}
+
+.doctor_image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+.doctor_name {
+  font-size: 18px;
+  font-weight: 500;
+  color: #18a4e1;
+}
+
+.doctor_details_about {
+  display: flex;
+  margin-left: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+  height: 100%;
+}
+
+.delete_button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ff93a6;
+  border: none;
+}
+
+.edit_button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #dafaee;
+  border: none;
+}

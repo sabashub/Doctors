@@ -1,0 +1,23 @@
+<h2>ავტორიზაცია</h2>
+<mat-dialog-content class="login_container">
+    <form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
+    
+      <input formControlName="userName" type="text" placeholder="ელ. ფოსტა / ტელეფონის ნომერი"
+      class="input_field">
+    
+    <span style="color: red;" *ngIf="submitted && loginForm.get('userName')?.hasError('required')">
+        Username is required
+    </span>
+    <br>
+    
+      <input formControlName="password" type="password" placeholder="პაროლი" class= "input_field">
+    
+    <span style="color: red;" *ngIf="submitted && loginForm.get('password')?.hasError('required')">
+        Password is required
+    </span>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="btn" mat-button (click)="login()">შესვლა</button>
+  <!-- <button class = "btn"mat-button mat-dialog-close>Cancel</button> -->
+</mat-dialog-actions>

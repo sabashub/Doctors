@@ -1,0 +1,24 @@
+<div class="categories-management">
+  <div class="header">
+    <h2>კატეგორიები</h2>
+  </div>
+  <div class="add-category">
+    <input type="text" [(ngModel)]="newCategory" placeholder="Enter category name" class="input_category">
+    <button (click)="addCategory()" class="add_button">დამატება</button>
+  </div>
+  <div class="category-grid">
+    <div class="row header-row">
+      <div class="column">კატეგორია</div>
+     
+    </div>
+    <div class="row" *ngFor="let category of categories; let i = index">
+      <div class="column">{{ category.name }}</div> 
+      
+      <div class="column">
+        <button (click)="editCategory(i)" class="edit_button"><img src="../../../assets/editButton.png" /> </button> <!-- Pass index -->
+        <button (click)="deleteCategory(i, category.id)" class="delete_button"><img src="../../../assets/deleteButton.png" /></button> <!-- Pass index and category ID -->
+      </div>
+    </div>
+  </div>
+</div>
+

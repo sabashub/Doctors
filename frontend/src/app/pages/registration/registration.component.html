@@ -1,0 +1,50 @@
+<div class="registration-form">
+  <h2>რეგისტრაცია</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
+    <div class="input-group">
+      <div class="input-container">
+        <label for="first-name">სახელი</label>
+        <input [class.is-valid]="submitted && registerForm.get('firstName')?.errors" formControlName="firstName" type="text" placeholder="(მინიმუმ 5 სიმბოლო)">
+        <span style="color: red;" *ngIf="submitted && registerForm.get('firstName')?.hasError('required')">სახელი აუცილებელია</span>
+        <span style="color: red;" *ngIf="registerForm.get('firstName')?.hasError('minlength')">მინიმუმ 5 სიმბოლო</span>
+      </div>
+      <div class="input-container">
+        <label for="last-name">გვარი</label>
+        <input [class.is-valid]="submitted && registerForm.get('lastName')?.errors" formControlName="lastName" type="text" id="last-name" name="last-name">
+        <span style="color: red;" *ngIf="submitted && registerForm.get('lastName')?.hasError('required')">სახელი აუცილებელია</span>
+        <span style="color: red;" *ngIf="registerForm.get('lastName')?.hasError('minlength')">მინიმუმ 5 სიმბოლო</span>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-container">
+        <label for="email">Email</label>
+        <input formControlName="email" type="email" id="email" name="email">
+        <span style="color: red;" *ngIf="submitted && registerForm.get('email')?.hasError('required')">იმეილი აუცილებელია</span>
+        <span style="color: red;" *ngIf="registerForm.get('email')?.hasError('pattern')"> არასწორი ფორმატი</span>
+      </div>
+      <div class="input-container">
+        <label for="private-number">პირადი ნომერი</label>
+        <input formControlName="privateNumber" type="text" id="private-number" name="private-number">
+        <span style="color: red;" *ngIf="submitted && registerForm.get('privateNumber')?.hasError('required')">პირადი ნომერი აუცილებელია</span>
+        <span style="color: red;" *ngIf="registerForm.get('privateNumber')?.hasError('pattern')"> პირადი ნომერი არასწორია</span>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-container">
+        <label for="activation-code">აქტივაციის კოდი</label>
+        <input type="number" id="activation-code" name="activation-code">
+      </div>
+      <div class="input-container">
+        <label for="password">პაროლი</label>
+        <input formControlName="password" type="password" id="password" name="password">
+        <span style="color: red;" *ngIf="submitted && registerForm.get('password')?.hasError('required')">პაროლი აუცილებელია</span>
+        <span style="color: red;" *ngIf="submitted && registerForm.get('password')?.hasError('pattern')">პაროლი არ არის სწორი</span>
+        </div>
+      </div>
+  
+      <button class="register-button" type="submit">რეგისტრაცია</button>
+    </form>
+  </div>
+  

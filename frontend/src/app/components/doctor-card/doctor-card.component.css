@@ -1,0 +1,69 @@
+.card {
+  width: 360px;
+  height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #18a4e14d;
+  border-radius: 10px;
+  margin: 10px;
+}
+.card_header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.views {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  width: 90px;
+  height: 35px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ecf2f880;
+  border-radius: 50px;
+}
+
+.pin_btn {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.doctor_image {
+  width: 130px;
+  height: 130px;
+}
+.doctor_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  width: 100%;
+  height: 30px;
+}
+h4 {
+  margin: 0;
+}
+p {
+  margin: 10px;
+  color: #0533544d;
+}
+.yellow-star {
+  color: #ffd233;
+}
+
+.card_button {
+  width: 180px;
+  height: 50px;
+  background-color: #ffffff;
+  color: #18a4e1;
+  border: 1px solid #18a4e1;
+  border-radius: 25px;
+  margin-top: 40px;
+  cursor: pointer;
+}

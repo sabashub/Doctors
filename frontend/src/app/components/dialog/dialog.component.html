@@ -1,0 +1,12 @@
+<h4 mat-dialog-title>გსურთ ვიზიტის დაჯავნშნა ? </h4>
+<div mat-dialog-content>
+  <p>შეგიძლიათ მიუთუთოთ თქვენი პორბლემა</p>
+  <textarea matInput [(ngModel)]="problemDescription" placeholder="აღწერა.."></textarea>
+</div>
+<div mat-dialog-actions class="dialog">
+    <div class="buttons">
+        <button mat-button (click)="onNoClick()" class="cancel_visit">გაუქმება</button>
+        <button class="book_visit" (click)="bookAppointment()" [disabled]="problemDescription.trim() === ''">დაჯავშნა</button>
+    </div>
+  
+</div>

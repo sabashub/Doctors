@@ -1,0 +1,18 @@
+<div class="doctor_card_container">
+    <div *ngFor="let doctor of doctors" class="card">
+      <div class="card_header">
+        <div class="views">
+          <img src="../../../assets/eye.png" />
+          <span>121212</span> 
+        </div>
+        <img class="pin_btn" src="../../../assets/pin.png" />
+      </div>
+      <img class="doctor_image" [src]="doctor.imageUrl" loading="lazy"/> 
+      <div class="doctor_info">
+        <h4>{{ doctor.firstName + ' ' + doctor.lastName }}</h4> 
+        <p>{{ doctor.category }}</p> 
+        <div><span class="yellow-star">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </div>
+      <button class="card_button" (click)="viewDoctorDetails(doctor.id)">მიღებაზე ჩაწერა </button>
+    </div>
+  </div>

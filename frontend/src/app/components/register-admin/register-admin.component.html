@@ -1,0 +1,36 @@
+<div class="admin-container">
+  <div>
+    <h2>Register Admin</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" [(ngModel)]="admin.email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" [(ngModel)]="admin.password" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+  </div>
+  
+  <div class="admin-grid-container">
+    <div class="admin-grid">
+      <div class="header">
+        <h2>Admins</h2>
+      </div>
+      <div class="row header-row">
+        <div class="column">Email</div>
+        <div class="column"></div>
+      </div>
+      <div class="row" *ngFor="let admin of admins">
+        <div class="column">{{ admin.email }}</div>
+        
+        <div class="column">
+          <button (click) = "editAdmin(admin.id)" class="edit_button"><img src="../../../assets/editButton.png" /></button>
+          <button (click)="deleteAdmin(admin.id)" class="delete_button"><img src="../../../assets/deleteButton.png" /></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

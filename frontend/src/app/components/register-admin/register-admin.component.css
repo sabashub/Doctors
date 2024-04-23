@@ -1,0 +1,66 @@
+.admin-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  gap: 20px;
+}
+
+.admin-grid-container {
+  max-height: 400px; /* Adjust as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.admin-grid {
+  background-color: #f0faff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.header {
+  padding: 10px;
+  background-color: #18a4e1;
+  color: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  background-color: #f0faff;
+  font-weight: bold;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+.column {
+  flex: 1;
+}
+
+button {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+
+.edit_button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #dafaee;
+  border: none;
+}
+.delete_button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ff93a6;
+  border: none;
+}

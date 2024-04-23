@@ -1,0 +1,19 @@
+<div class="doctor_page_container">
+    <app-category></app-category>
+    <div class="user_description">
+        <img [src]="doctor?.imageUrl" class="user_image" />
+        <p style="font-size: 18px; font-weight: 400; color: #18A4E1;">{{doctor?.firstName }} {{doctor?.lastName}}</p>
+        <p>ექიმი</p>
+        <p>{{doctor?.category}}</p>
+        <h4>პირადი ნომერი:</h4>
+        <p>{{ doctor?.privateNumber }}</p>
+        <h4>Email:</h4>
+        <p>{{ doctor?.email }}</p>
+        <h4><a>პაროლის შეცვლა</a></h4>
+        <h4>ჩემი ჯავშანი</h4>
+        <p>(1)</p>
+    </div>
+    <app-calendar></app-calendar>
+</div>
+
+

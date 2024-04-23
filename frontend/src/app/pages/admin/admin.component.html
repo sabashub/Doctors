@@ -1,0 +1,25 @@
+<div class="admin_container">
+    <div class="buttons_container">
+      <div class="action_buttons_container">
+        <button class="action_button" (click)="showGrid(1, 1)" [class.active_button]="activeButton === 1">რეგისტრაცია</button>
+        <button class="action_button" (click)="showGrid(2, 2)" [class.active_button]="activeButton === 2">კატეგორიები</button>
+        <button class="action_button" (click)="showGrid(3, 3)" [class.active_button]="activeButton === 3">ექიმები</button>
+
+      </div>
+      <div class="user_buttons">
+        <button class="user_button">ექიმი</button>
+        <button class="user_button">მომხმარებელი</button>
+        <button class="user_button">ადმინისტრატორი</button>
+      </div>
+    </div>
+    <div *ngIf="showRegistration">
+      <app-handle-registration></app-handle-registration>
+    </div>
+    <div *ngIf="showCategoriesGrid">
+     <app-handle-categories></app-handle-categories>
+    </div>
+    <div *ngIf="showDoctorsGrid">
+      <app-doctors-grid></app-doctors-grid>
+    </div>
+  </div>
+  

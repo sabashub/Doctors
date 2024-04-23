@@ -1,0 +1,63 @@
+<div class="doctors-grid">
+  <div class="header">
+    <h2>Doctors</h2>
+  </div>
+  <!-- Display the grid only if selectedDoctor is null -->
+  <div *ngIf="!selectedDoctor">
+    <div class="row header-row">
+      <div class="column">სახელი</div>
+      <div class="column">კატეგორია</div>
+      <div class="column">ფოტოსურათი</div>
+      <div class="column">რეიტინგი</div>
+      <div class="column"></div>
+    </div>
+    <div class="row" *ngFor="let doctor of doctors" (click)="showDoctorDetails(doctor)">
+      <div class="column">{{ doctor.firstName }} {{doctor.lastName}}</div>
+      <div class="column">{{ doctor.category }}</div>
+      <div class="column"><img [src]="doctor.imageUrl" alt="Doctor Image" class="doctor_thumbnail"></div>
+      <div class="column">⭐️⭐️⭐️</div>
+      <div class="column">
+        <button class="edit_button"><img src="../../../assets/editButton.png" /></button>
+        <button (click)="deleteDoctor(doctor)" class="delete_button"><img src="../../../assets/deleteButton.png" /></button>
+      </div>
+    </div>
+  </div>
+  <!-- Display the card only if selectedDoctor is not null -->
+  <div class="doctor-details-container" *ngIf="selectedDoctor">
+    <div class="doctor_details">
+      
+      <div class="doctor_detail_about">
+        <img [src]="selectedDoctor.imageUrl" class="doctor_image"/>
+        
+        <p class="doctor_name">{{ selectedDoctor.firstName }} {{ selectedDoctor.lastName }}</p>
+        <p style="color: #053354; font-size: 14px; font-weight: 400;">ექიმი</p>
+        <p> {{ selectedDoctor.category }}</p>
+        <p>⭐️ ⭐️ ⭐️ ⭐️ ⭐️</p>
+      </div>
+      <div class="doctor_detail_about">
+        <div>
+          <h4>პირადი ნომერი:</h4>
+          <p>{{selectedDoctor.privateNumber}}</p>
+        </div>
+        <div>
+          <h4>Email:</h4>
+          <p>{{selectedDoctor.email}}</p>
+        </div>
+        <div><h4>პაროლის შეცვლა</h4></div>
+        
+      </div>
+      <div class="doctor_detail_about">
+        <div>
+          <h4>დაჯავშნილია: </h4>
+          <p>(20)</p>
+        </div>
+        
+      </div>
+      
+    
+     
+    </div>
+    <button (click)="hideDoctorDetails()">Back to Grid</button>
+    
+  </div>
+</div>

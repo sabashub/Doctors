@@ -1,0 +1,5 @@
+.doctor_details_container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
