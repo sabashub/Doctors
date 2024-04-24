@@ -91,7 +91,7 @@ namespace Api.Controllers
                 PrivateNumber = user.PrivateNumber,
                 JWT = _jwtService.CreateJWT(user),
                 Type = type,
-                Appointments = user.Appointments
+
             };
         }
 

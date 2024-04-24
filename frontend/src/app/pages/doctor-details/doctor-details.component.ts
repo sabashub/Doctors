@@ -5,6 +5,7 @@ import { Doctor } from '../../models/Doctor';
 import { DoctorCalendarComponent } from '../../components/doctor-calendar/doctor-calendar.component';
 import { CalendarComponent } from '../../components/calendar/calendar.component';
 import { CategoryComponent } from '../../components/category/category.component';
+
 @Component({
   selector: 'app-doctor-details',
   standalone: true,

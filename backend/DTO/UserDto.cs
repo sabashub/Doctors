@@ -9,7 +9,7 @@ namespace backend.DTO
         public string Email { get; set; }
         public string PrivateNumber { get; set; }
 
-        // Add the Appointments property
-        public List<AppointmentDto> Appointments { get; set; }
+
+
     }
 }
