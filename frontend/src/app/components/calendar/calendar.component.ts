@@ -26,6 +26,7 @@ export class CalendarComponent {
   hours: number[] = Array.from({ length: 9 }, (_, i) => i + 9); // Hours from 9:00 to 17:00
   appointments: Appointment[] = [];
   backgroundColor: string = ''
+  showDialog = false;
 
   constructor(public dialog: MatDialog, private http: HttpClient, private appService: AppService  ) {
     const currentDate = new Date();
@@ -63,20 +64,32 @@ export class CalendarComponent {
     }
   }
   
-  openDialog(hour: number, day: number): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '400px',
-      data: { problem: '' } // Initialize with an empty string or any default value
-    });
   
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.problem.trim() !== '') {
-       
-        this.scheduleAppointment(hour, day, result.problem);
+  openDialog(hour: number, day: number): void {
+    this.showDialog = true; // Set flag to true to indicate that dialog should be shown
+
+    // Subscribe to the user$ observable to get the current user object
+    this.appService.user$.subscribe(user => {
+      if (this.showDialog && user && user.type === 'User') {
+        const dialogRef = this.dialog.open(DialogComponent, {
+          width: '400px',
+          data: { problem: '' } // Initialize with an empty string or any default value
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result && result.problem.trim() !== '') {
+            this.scheduleAppointment(hour, day, result.problem);
+          }
+        });
+      } else {
+        console.error('User is not authorized to book appointments');
       }
+      // Reset the flag after processing
+      this.showDialog = false;
     });
   }
-
+  
+  
   isAppointmentScheduled(day: number, hour: number): boolean {
     const selectedDate = new Date(this.currentYear, this.getMonthNumber(this.currentMonth), day, hour);
     return this.appointments.some(appointment => appointment.date.getTime() === selectedDate.getTime());
