@@ -9,6 +9,8 @@ namespace backend.DTO
         public string Email { get; set; }
         public string PrivateNumber { get; set; }
 
+        public string Id { get; set; }
+
 
 
     }

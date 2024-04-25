@@ -8,4 +8,5 @@ export interface User{
     category: string;
     imageUrl: string;
     type: string;
+    id: any;
 }

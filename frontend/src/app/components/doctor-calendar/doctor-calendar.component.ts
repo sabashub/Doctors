@@ -1,10 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Appointment } from '../calendar/calendar.component';
+
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { AppService } from '../../app.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { CommonModule } from '@angular/common';
+import { User } from '../../models/User';
+export interface Appointment {
+  date: Date;
+  problem: string;
+  userId: string;
+  doctorId: number;
+}
 @Component({
   selector: 'app-doctor-calendar',
   standalone: true,
@@ -12,7 +19,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './doctor-calendar.component.html',
   styleUrl: './doctor-calendar.component.css'
 })
-export class DoctorCalendarComponent  {
+
+
+export class DoctorCalendarComponent  implements OnInit{
   currentMonth: string = '';
   currentYear: number = 2024;
   currentDay: number = 1;
@@ -21,6 +30,8 @@ export class DoctorCalendarComponent  {
   appointments: Appointment[] = [];
   backgroundColor: string = ''
   showDialog = false;
+  user: User | null = null;
+  doctorId: any = null;
 
   constructor(public dialog: MatDialog, private http: HttpClient, private appService: AppService  ) {
     const currentDate = new Date();
@@ -29,7 +40,12 @@ export class DoctorCalendarComponent  {
     this.currentDay = currentDate.getDate();
     
   }
-  
+  ngOnInit(): void {
+    
+    this.getAppointmentsByDoctorId()
+
+
+  }
   getBackgroundColor(day: string): string {
     if (day === 'შაბ' || day === 'კვი') {
       return 'rgb(248, 248, 235)';
@@ -39,7 +55,20 @@ export class DoctorCalendarComponent  {
   }
 
   scheduleAppointment(hour: number, day: number, problem: string) {
-    const selectedDate = new Date(this.currentYear, this.getMonthNumber(this.currentMonth), day, hour);
+  //   this.appService.user$.subscribe(user => {
+  //     this.user = user;
+  //     console.log('User:', this.user);
+  //   });
+    const url = window.location.href;
+  const segments = url.split('/');
+  const doctorSegmentIndex = segments.findIndex(segment => segment === 'doctor'); // Find the index of 'doctor' segment
+  if (doctorSegmentIndex !== -1 && segments.length > doctorSegmentIndex + 1) {
+    const doctorIdString = segments[doctorSegmentIndex + 1]; // Get the segment after 'doctor/'
+    this.doctorId = parseInt(doctorIdString, 10); // Parse the segment as integer
+  } else {
+    console.error('DoctorId not found in the URL');
+  }
+    const selectedDate = new Date(this.currentYear, this.getMonthNumber(this.currentMonth), day, hour + 4);
     if (!isNaN(selectedDate.getTime())) {
       const appointmentsForHour = this.appointments.filter(appointment => {
         const appointmentDate = new Date(appointment.date);
@@ -47,18 +76,50 @@ export class DoctorCalendarComponent  {
       });
   
       if (appointmentsForHour.length < 3) {
-        const appointment: Appointment = { date: selectedDate, problem: problem };
-        this.appointments.push(appointment);
-        console.log(appointment)
-        console.log(`New appointment added: ${selectedDate}`);
-        console.log(this.appointments)
+        console.log(this.user?.id)
+        const appointment: Appointment = { date: selectedDate, problem: problem, userId: "28b69834-649f-441b-80f4-e7ca62404144", doctorId: this.doctorId };
+        this.http.post('http://localhost:5005/api/Appointment/create', appointment)
+          .subscribe(
+            (response) => {
+              console.log('Appointment created successfully:', response);
+
+              this.getAppointmentsByDoctorId()
+              console.log(this.appointments)
+              // You may want to update the UI or perform other actions upon successful creation
+            },
+            (error) => {
+              console.error('Error creating appointment:', error);
+              // Handle errors, e.g., show error message to the user
+            }
+          );
       } else {
         console.error('Maximum appointments reached for this hour');
-        
+        // Handle maximum appointments reached scenario
       }
     } else {
       console.error('Invalid Date');
+      // Handle invalid date scenario
     }
+  }
+  getAppointmentsByDoctorId(): void {
+    // Replace '1' with the actual doctor ID you want to fetch appointments for
+    const doctorId = 1;
+    const apiUrl = `http://localhost:5005/api/Appointment/getByDoctorId/${doctorId}`;
+    
+    this.http.get<Appointment[]>(apiUrl).subscribe(
+      (response) => {
+        // Parse date strings into Date objects
+        this.appointments = response.map(appointment => ({
+          ...appointment,
+          date: new Date(appointment.date)
+        }));
+        console.log('Appointments:', this.appointments);
+      },
+      (error) => {
+        console.error('Error fetching appointments:', error);
+        // Handle errors, e.g., show error message to the user
+      }
+    );
   }
   
   

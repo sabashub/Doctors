@@ -33,7 +33,8 @@ namespace Api.Controllers
 
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AccountController(JWTService jwtService,
+        public AccountController(
+            JWTService jwtService,
             SignInManager<User> signInManager,
             UserManager<User> userManager,
             EmailService emailService,
@@ -232,6 +233,7 @@ namespace Api.Controllers
 
             var userToAdd = new User
             {
+                Id = model.Id.ToString(),
                 FirstName = model.FirstName.ToLower(),
                 LastName = model.LastName.ToLower(),
                 UserName = model.Email.ToLower(),
@@ -338,6 +340,7 @@ namespace Api.Controllers
                 Email = user.Email,
                 PrivateNumber = user.PrivateNumber,
                 JWT = _jwtService.CreateJWT(user),
+                Id = user.Id
             };
         }
 

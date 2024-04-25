@@ -21,7 +21,9 @@ namespace backend.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly JWTService _jwtService;
 
-        public DoctorController(Context context, IHttpContextAccessor httpContextAccessor, JWTService jwtService)
+        public DoctorController(Context context, IHttpContextAccessor httpContextAccessor,
+        JWTService jwtService
+        )
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;

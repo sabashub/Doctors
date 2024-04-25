@@ -5,7 +5,7 @@ namespace backend.DTO
     public class RegisterDto
     {
         [Required]
-
+        public int Id { get; set; }
         public string FirstName { get; set; }
         [Required]
 

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { AppService } from '../../app.service';
 import { HttpClient } from '@angular/common/http';
-import { Appointment } from '../calendar/calendar.component';
+
 import { CommonModule } from '@angular/common';
+import { Appointment } from '../doctor-calendar/doctor-calendar.component';
 @Component({
   selector: 'app-user-calendar',
   standalone: true,
@@ -47,6 +48,8 @@ export class UserCalendarComponent {
     };
     return months[month];
   }
+  
+
 
   nextWeek() {
     this.currentDay += 7;

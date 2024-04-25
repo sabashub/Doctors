@@ -168,3 +168,4 @@
 /Users/sabashubitidze/Desktop/doctors/backend/bin/Debug/net9.0/Mailjet.Client.dll
 /Users/sabashubitidze/Desktop/doctors/backend/bin/Debug/net9.0/Newtonsoft.Json.dll
 /Users/sabashubitidze/Desktop/doctors/backend/bin/Debug/net9.0/backend.staticwebassets.runtime.json
+/Users/sabashubitidze/Desktop/doctors/backend/obj/Debug/net9.0/backend.sourcelink.json

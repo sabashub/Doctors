@@ -8,7 +8,7 @@ namespace backend.Models
     public class User : IdentityUser
     {
 
-
+        public override string Id { get; set; }
         public required string FirstName { get; set; }
         [Required]
         public required string LastName { get; set; }

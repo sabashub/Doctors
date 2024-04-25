@@ -3,13 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
 import { Doctor } from '../../models/Doctor';
 import { DoctorCalendarComponent } from '../../components/doctor-calendar/doctor-calendar.component';
-import { CalendarComponent } from '../../components/calendar/calendar.component';
+//import { CalendarComponent } from '../../components/calendar/calendar.component';
 import { CategoryComponent } from '../../components/category/category.component';
 
 @Component({
   selector: 'app-doctor-details',
   standalone: true,
-  imports: [DoctorCalendarComponent, CategoryComponent, CalendarComponent],
+  imports: [DoctorCalendarComponent, CategoryComponent, ],
   templateUrl: './doctor-details.component.html',
   styleUrl: './doctor-details.component.css'
 })
