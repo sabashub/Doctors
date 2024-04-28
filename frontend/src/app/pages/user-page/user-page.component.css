@@ -5,7 +5,7 @@
 }
 
 .user_description {
-  width: 350px;
+  width: 250px;
   height: 600px;
   display: flex;
   flex-direction: column;

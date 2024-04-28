@@ -1,28 +1,40 @@
 <div class="calendar-container">
-    <h2>{{ currentMonth }} {{ currentYear }}</h2>
-    <!-- Week switcher -->
-    
-    <br>
-    <!-- Calendar grid -->
-    <table class="calendar-grid">
-      <tr>
-        <th style="background-color: #ECF2F8">
-          <div class="week-switcher">
-          <button class="switch_button" (click)="prevWeek()">&lt;</button>
-          <button class="switch_button" (click)="nextWeek()">&gt;</button>
-        </div>
+  <h2>{{ currentMonth }} {{ currentYear }}</h2>
+  <!-- Week switcher -->
+  
+  <br>
+  <!-- Calendar grid -->
+  <table class="calendar-grid">
+    <tr>
+      <th style="background-color: #ECF2F8">
+        <div class="week-switcher">
+        <button class="switch_button" (click)="prevWeek()">&lt;</button>
+        <button class="switch_button" (click)="nextWeek()">&gt;</button>
+      </div>
+    </th>
+      <th *ngFor="let day of weekDays" [ngStyle]="{'background-color': getBackgroundColor(day)}" style="background-color: #ECF2F8;">
+        <span style="color:#18A4E1">{{ currentDay + getDayIndex(day) }}</span> ({{ day }})
       </th>
-        <th *ngFor="let day of weekDays" [ngStyle]="{'background-color': getBackgroundColor(day)}" style="background-color: #ECF2F8;">
-          <span style="color:#18A4E1">{{ currentDay + getDayIndex(day) }}</span> ({{ day }})
-        </th>
-      </tr>
-      <tr *ngFor="let hour of hours">
-        <td class="hour-cell">{{ hour }}:00 - {{hour + 1}}:00</td>
-        <td *ngFor="let day of weekDays; let j = index" class="day-cell"  [ngStyle]="{'background-color': getBackgroundColor(day)}">
-          <div *ngIf="isAppointmentScheduled(currentDay + j, hour)" class="window">
-            <div class="booked">დაჯავშნილია</div>
-          </div>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </tr>
+    <tr *ngFor="let hour of hours">
+      <td class="hour-cell">{{ hour }}:00 - {{hour + 1}}:00</td>
+      <td *ngFor="let day of weekDays; let j = index" class="day-cell"  [ngStyle]="{'background-color': getBackgroundColor(day)}">
+        <div *ngIf="isAppointmentScheduled(currentDay + j, hour)" class="window" (click)="openActionMenu(currentDay + j, hour)" >
+          <div class="booked">ჩემი ჯავშანი</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- Action menu for selected appointment -->
+<div *ngIf="selectedAppointment" class="action-menu">
+  <h3>ჯავშანი</h3>
+  <p><strong>პრობლემა:</strong> {{ selectedAppointment.problem }}</p>
+</div>
+
+<div class="buttons">
+  <button (click)="editAppointment()" class="edit_button">რედაქტირება</button>
+  <button (click)="deleteAppointment()" class="delete_button">წაშლა</button>
+</div>
+

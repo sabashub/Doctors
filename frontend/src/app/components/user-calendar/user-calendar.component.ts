@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../app.service';
 import { HttpClient } from '@angular/common/http';
 
 import { CommonModule } from '@angular/common';
-import { Appointment } from '../doctor-calendar/doctor-calendar.component';
+
 @Component({
   selector: 'app-user-calendar',
   standalone: true,
@@ -11,15 +11,18 @@ import { Appointment } from '../doctor-calendar/doctor-calendar.component';
   templateUrl: './user-calendar.component.html',
   styleUrl: './user-calendar.component.css'
 })
-export class UserCalendarComponent {
+export class UserCalendarComponent implements OnInit{
   currentMonth: string = '';
   currentYear: number = 2024;
   currentDay: number = 1;
   weekDays: string[] = ['ორშ', 'სამ', 'ოთხ', 'ხუთ', 'პარ', 'შაბ', 'კვი'];
   hours: number[] = Array.from({ length: 9 }, (_, i) => i + 9); // Hours from 9:00 to 17:00
-  appointments: Appointment[] = [];
+  appointments: any[] = [];
   backgroundColor: string = ''
   showDialog = false;
+  user: any = null;
+  userId: any = null;
+  selectedAppointment: any | null = null;
 
   constructor( private http: HttpClient, private appService: AppService  ) {
     const currentDate = new Date();
@@ -28,6 +31,13 @@ export class UserCalendarComponent {
     this.currentDay = currentDate.getDate();
     
   }
+  ngOnInit(): void {
+   
+    this.getUser();
+    
+
+  }
+  
   getBackgroundColor(day: string): string {
     if (day === 'შაბ' || day === 'კვი') {
       return 'rgb(248, 248, 235)';
@@ -98,6 +108,32 @@ export class UserCalendarComponent {
       'July': 6, 'August': 7, 'September': 8, 'October': 9, 'November': 10, 'December': 11
     };
   }
+  getUser(){
+    this.appService.user$.subscribe(user => {
+      this.user = user;
+      console.log('User:', this.user);
+      this.userId = user?.id
+    });
+    console.log('UserId:', this.userId);
+    this.getAppointmentsByUserId(this.userId)
+  }
+  getAppointmentsByUserId(userId: any): void {
+    const apiUrl = `http://localhost:5005/api/Appointment/getByUserId/${userId}`;
+    
+    this.http.get<any[]>(apiUrl).subscribe(
+      (response) => {
+        this.appointments = response.map(appointment => ({
+          ...appointment,
+          date: new Date(appointment.date)
+        }));
+        console.log('Appointments:', this.appointments);
+      },
+      (error) => {
+        console.error('Error fetching appointments:', error);
+      }
+    );
+  }
+  
   
   getDayIndex(day: string): number {
     const index = this.weekDays.indexOf(day);
@@ -110,5 +146,71 @@ export class UserCalendarComponent {
     });
   
     return appointmentsForHour.length >= 3;
+  }
+  openActionMenu(day: number, hour: number) {
+    // Find the selected appointment
+    this.selectedAppointment = this.appointments.find(appointment => {
+      const appointmentDate = new Date(appointment.date);
+      return appointmentDate.getDate() === day && appointmentDate.getHours() === hour;
+    });
+  }
+
+  // Method to delete the selected appointment
+  deleteAppointment() {
+    if (this.selectedAppointment) {
+      const confirmation = confirm('Are you sure you want to delete this appointment?');
+      if (confirmation) {
+        const apiUrl = `http://localhost:5005/api/Appointment/delete/${this.selectedAppointment.id}`;
+        this.http.delete(apiUrl).subscribe(
+          () => {
+            // Remove the appointment from the appointments array
+            this.appointments = this.appointments.filter(appointment => appointment.id !== this.selectedAppointment?.id);
+            // Reset selectedAppointment
+            this.selectedAppointment = null;
+          },
+          (error) => {
+            console.error('Error deleting appointment:', error);
+            alert('Failed to delete appointment. Please try again later.');
+          }
+        );
+      }
+    }
+  }
+
+  // Method to edit the problem of the selected appointment
+  editAppointment(): void {
+    if (this.selectedAppointment) {
+      console.log("selected", this.selectedAppointment)
+      const newProblem = window.prompt('Enter the new problem:', this.selectedAppointment.problem);
+      if (newProblem !== null) {
+        // Create an updated appointment object with only the problem field updated
+        const updatedAppointment = {
+          id: this.selectedAppointment.id, // Keep the original appointment ID
+          problem: newProblem, // Update the problem with the new value
+          date: this.selectedAppointment.date,
+          userId: this.selectedAppointment.userId,
+          doctorId: this.selectedAppointment.doctorId
+        };
+
+        console.log("updated", updatedAppointment)
+  
+        // Make the PUT request to update the appointment's problem
+        const apiUrl = `http://localhost:5005/api/Appointment/update/${this.selectedAppointment.id}`;
+        this.http.put(apiUrl, updatedAppointment).subscribe(
+          () => {
+            console.log('Appointment problem updated successfully');
+            // Update the problem in the local appointments array
+            const index = this.appointments.findIndex(appointment => appointment.id === this.selectedAppointment?.id);
+            if (index !== -1) {
+              this.appointments[index].problem = newProblem;
+            }
+          },
+          (error) => {
+            console.error('Error updating appointment problem:', error);
+            // Handle error (e.g., show error message to the user)
+          }
+        );
+      }
+    }
   }
 }

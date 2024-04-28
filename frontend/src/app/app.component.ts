@@ -5,6 +5,7 @@ import { SearchComponent } from './components/search/search.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AppService } from './app.service';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

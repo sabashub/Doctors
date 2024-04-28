@@ -8,19 +8,37 @@
     <tr>
       <th style="background-color: #ECF2F8">
         <div class="week-switcher">
-        <button class="switch_button" (click)="prevWeek()">&lt;</button>
-        <button class="switch_button" (click)="nextWeek()">&gt;</button>
-      </div>
-    </th>
-      <th *ngFor="let day of weekDays" [ngStyle]="{'background-color': getBackgroundColor(day)}" style="background-color: #ECF2F8;">
-        <span style="color:#18A4E1">{{ currentDay + getDayIndex(day) }}</span> ({{ day }})
+          <button class="switch_button" (click)="prevWeek()">&lt;</button>
+          <button class="switch_button" (click)="nextWeek()">&gt;</button>
+        </div>
+      </th>
+      <th *ngFor="let day of weekDays"
+          [ngStyle]="{'background-color': getBackgroundColor(day)}"
+          style="background-color: #ECF2F8;"
+      >
+        <span *ngIf="day !== 'შაბ' && day !== 'კვი'" style="color:#18A4E1">{{ currentDay + getDayIndex(day) }}</span> ({{ day }})
       </th>
     </tr>
     <tr *ngFor="let hour of hours">
       <td class="hour-cell">{{ hour }}:00 - {{hour + 1}}:00</td>
-      <td *ngFor="let day of weekDays; let j = index" class="day-cell" (click)="openDialog(hour, currentDay + j)" [ngStyle]="{'background-color': getBackgroundColor(day)}">
-        <div *ngIf="isAppointmentScheduled(currentDay + j, hour)" class="window">
-          <div class="booked">დაჯავშნილია</div>
+      <td *ngFor="let day of weekDays; let j = index" class="day-cell"
+          [ngStyle]="{
+            'background-color': isMyAppointment(currentDay + j, hour) ? 'lightgreen' : 
+                                isMyAppointment(currentDay + j, hour) && isAppointmentScheduled(currentDay + j, hour) ? 'lightgreen' : 
+                                isAppointmentScheduled(currentDay + j, hour) ? 'red' : 
+                                (day === 'შაბ' || day === 'კვი') ? 'rgb(248, 248, 235)' : '#ffffff',
+            'color': (day === 'შაბ' || day === 'კვი') ? 'transparent' : '#18A4E1'
+          }"
+          (click)="!(day === 'შაბ' || day === 'კვი') && openDialog(hour, currentDay + j)">
+        <div class="window">
+          <ng-container *ngIf="!isAppointmentScheduled(currentDay + j, hour)">
+            <div class="book" *ngIf="day !== 'შაბ' && day !== 'კვი'"> <span style="color: #3ACF99;">+</span>დაჯავშნა</div>
+          </ng-container>
+          <ng-container *ngIf="isAppointmentScheduled(currentDay + j, hour)">
+            <div class="booked {{ isMyAppointment(currentDay + j, hour) ? 'my-appointment' : 'other-appointment' }}">
+              {{ isMyAppointment(currentDay + j, hour) ? 'ჩემი ჯავშანი' : '' }}
+            </div>
+          </ng-container>
         </div>
       </td>
     </tr>

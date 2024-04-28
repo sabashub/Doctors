@@ -16,12 +16,14 @@ import { CategoryComponent } from '../../components/category/category.component'
 export class DoctorDetailsComponent implements OnInit{
   doctorId: string = '';
   doctor: Doctor | null = null;
+  doctorNumId: number = 0
 
   constructor(private route: ActivatedRoute, private appService: AppService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.doctorId = params['id'];
+      this.doctorNumId = parseInt(params['id'], 10);
       this.fetchDoctorDetails(this.doctorId);
       
     });

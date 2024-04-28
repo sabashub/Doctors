@@ -57,3 +57,37 @@
   height: 30px;
   cursor: pointer;
 }
+
+.buttons {
+  height: 60px;
+  width: 550px;
+  margin-top: 30px;
+  margin-left: 600px;
+}
+.edit_button {
+  width: 200px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: #ecf2f8;
+  color: #18a4e1;
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.delete_button {
+  width: 170;
+  height: 50px;
+  border-radius: 50px;
+  background-color: #ff93a6;
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+.action-menu {
+  margin-left: 600px;
+}

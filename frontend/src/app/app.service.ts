@@ -23,7 +23,7 @@ export class AppService {
 
     constructor(private http: HttpClient, private router: Router, ) { }
 
-    refreshUser(jwt: string | null ){
+    refreshUser(jwt: string | null  ){
         if(jwt === null){
             this.userSource.next(null);
             return of(undefined)
@@ -149,5 +149,10 @@ export class AppService {
 
   editAdminPassword(adminId: number, newPassword: string): Observable<any> {
     return this.http.put(`${environment.apiUrl}/admin/editPassword/${adminId}`,  newPassword );
+  }
+
+  deleteAppointmentById(appointmentId: number): Observable<void> {
+    const apiUrl = `http://localhost:5005/api/Appointment/delete/${appointmentId}`;
+    return this.http.delete<void>(apiUrl);
   }
 }

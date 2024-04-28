@@ -15,6 +15,7 @@ using backend.Models;
 using backend.Data;
 using backend.DTO;
 using Microsoft.AspNetCore.Http;
+using TestClient;
 
 namespace Api.Controllers
 {
@@ -27,6 +28,8 @@ namespace Api.Controllers
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
         private readonly EmailService _emailService;
+
+        private readonly MailSender _mailSender;
         private readonly IConfiguration _config;
         private readonly Context _context;
 
@@ -39,7 +42,10 @@ namespace Api.Controllers
             UserManager<User> userManager,
             EmailService emailService,
             IConfiguration config,
-            Context context, IHttpContextAccessor httpContextAccessor
+            Context context,
+            IHttpContextAccessor httpContextAccessor,
+            MailSender mailSender
+
             )
         {
             _jwtService = jwtService;
@@ -48,7 +54,7 @@ namespace Api.Controllers
             _emailService = emailService;
             _config = config;
             _context = context;
-
+            _mailSender = mailSender;
             _httpContextAccessor = httpContextAccessor;
         }
 
@@ -86,6 +92,7 @@ namespace Api.Controllers
         {
             return new UserDto
             {
+                Id = user.Id.ToString(),
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,

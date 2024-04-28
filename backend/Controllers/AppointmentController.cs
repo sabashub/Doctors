@@ -71,34 +71,39 @@ namespace backend.Controllers
             return appointment;
         }
 
-        // PUT: api/Appointment/update/5
+
         [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateAppointment(int id, Appointment appointment)
         {
             if (id != appointment.Id)
             {
-                return BadRequest();
+                return BadRequest("ID in the URL does not match the appointment ID.");
             }
 
-            _context.Entry(appointment).State = EntityState.Modified;
+            var existingAppointment = await _context.Appointments.FindAsync(id);
+            if (existingAppointment == null)
+            {
+                return NotFound("Appointment not found.");
+            }
+
+            _context.Entry(existingAppointment).CurrentValues.SetValues(appointment);
 
             try
             {
                 await _context.SaveChangesAsync();
+                return NoContent();
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!AppointmentExists(id))
                 {
-                    return NotFound();
+                    return NotFound("Appointment not found.");
                 }
                 else
                 {
                     throw;
                 }
             }
-
-            return NoContent();
         }
 
         // DELETE: api/Appointment/delete/5
