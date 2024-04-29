@@ -34,7 +34,7 @@ input {
   padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 40px;
 }
 
 button.register-button {
@@ -47,6 +47,7 @@ button.register-button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin-top: 20px;
 }
 
 button.register-button:hover {

@@ -48,9 +48,20 @@ register(){
     this.appService.register(this.registerForm.value).subscribe({
       next: (response) => {
         console.log(response);
+        alert("Account created succesfully, go to the email for verification")
+        this.router.navigate(['/']);
+        
+        
       },
       error: (error) => {
-        console.log(error);
+        let errorMessage = 'An error occurred while registering.';
+
+        // Check if the error contains a specific message
+        if (error && error.error && error.error.message) {
+          errorMessage = error.error.message;
+        }
+
+        alert(errorMessage);
         
       }
   

@@ -1,5 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
+
 import { RouterModule,  } from '@angular/router';
 import { DoctorsComponent } from './pages/doctors/doctors.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
@@ -12,15 +13,16 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.component';
 export const routes: Routes = [
   
-  { path: 'doctors', component: MainPageComponent },
-  { path: '', component: MainPageComponent },
-  { path: 'registration', component: RegistrationComponent },
+  {path: 'doctors', component: MainPageComponent },
+  {path: '', component: MainPageComponent },
+  {path: 'registration', component: RegistrationComponent },
   {path: 'register-doctor', component: RegisterDoctorComponent},
   {path: 'login', component: LoginComponent},
   {path: 'user', component: UserPageComponent},
   {path: 'doctor', component: DoctorPageComponent},
   {path: 'admin', component: AdminComponent},
-  { path: 'doctor/:id', component: DoctorDetailsComponent },
+  {path: 'doctor/:id', component: DoctorDetailsComponent },
+  {path: '**', redirectTo: '/' }
   
  
 ];

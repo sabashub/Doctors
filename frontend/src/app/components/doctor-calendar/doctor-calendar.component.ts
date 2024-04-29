@@ -54,6 +54,7 @@ export class DoctorCalendarComponent implements OnInit {
       console.log('User:', this.user);
     });
   }
+  
 
   getBackgroundColor(day: string): string {
     if (day === 'შაბ' || day === 'კვი') {

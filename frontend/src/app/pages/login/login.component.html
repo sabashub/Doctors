@@ -15,7 +15,11 @@
     <span style="color: red;" *ngIf="submitted && loginForm.get('password')?.hasError('required')">
         Password is required
     </span>
+    <p style="color: red;"> {{ errorMessages[0] }}</p>
   </form>
+
+    
+ 
 </mat-dialog-content>
 <mat-dialog-actions>
   <button class="btn" mat-button (click)="login()">შესვლა</button>

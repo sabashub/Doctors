@@ -108,6 +108,8 @@ export class UserCalendarComponent implements OnInit{
       'July': 6, 'August': 7, 'September': 8, 'October': 9, 'November': 10, 'December': 11
     };
   }
+  
+  
   getUser(){
     this.appService.user$.subscribe(user => {
       this.user = user;

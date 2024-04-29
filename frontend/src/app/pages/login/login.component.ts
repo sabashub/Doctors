@@ -75,7 +75,9 @@ export class LoginComponent implements OnInit{
         // Close the dialog regardless of user type
         this.dialogRef.close();
       } catch (error) {
-       
+        
+          this.errorMessages.push('Invalid email or password');
+        
       }
     }
   }

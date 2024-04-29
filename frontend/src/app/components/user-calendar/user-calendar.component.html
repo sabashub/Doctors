@@ -13,7 +13,7 @@
       </div>
     </th>
       <th *ngFor="let day of weekDays" [ngStyle]="{'background-color': getBackgroundColor(day)}" style="background-color: #ECF2F8;">
-        <span style="color:#18A4E1">{{ currentDay + getDayIndex(day) }}</span> ({{ day }})
+        <span style="color:#18A4E1">{{ (currentDay + getDayIndex(day)) <= 31 ? (currentDay + getDayIndex(day)) : (currentDay + getDayIndex(day)) - 31 }}</span> ({{ day }})
       </th>
     </tr>
     <tr *ngFor="let hour of hours">

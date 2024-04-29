@@ -2,22 +2,31 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+}
+p {
+  margin: 0;
+}
+h4 {
+  margin: 4;
 }
 
 .user_description {
-  width: 250px;
+  width: 200px;
   height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 1px solid #ecf2f8;
   margin-top: 50px;
-  margin-left: 50px;
+
+  justify-content: space-between;
 }
 
 .user_image {
-  width: 140px;
-  height: 140px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  margin-top: 20px;
+
+  margin: 20px;
 }
